@@ -73,8 +73,10 @@ project = "your-gcp-project-id"
 ### 5.2. 初期化
 
 Terraformの設定を初期化し、プロバイダのダウンロードとバックエンド（GCS）の設定を行います。
+作成したいクラウドプロバイダーのディレクトリに移動してから実施してください。
 
 ```bash
+cd google-cloud
 terraform init -backend-config="bucket=${project-id}-tfstate"
 ```
 
