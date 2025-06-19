@@ -65,9 +65,15 @@
 
 ```hcl
 # terraform.tfvars (このファイルはGitにコミットしないでください)
-project = "your-gcp-project-id"
+// Google Cloud
+project = "${your-gcp-project-id}"
 # region = "asia-northeast1" # デフォルト値を使用しない場合は指定
 # zone   = "asia-northeast1-a" # デフォルト値を使用しない場合は指定
+
+// AWS
+account_id = "${your-aws-account-id}"
+# region = "ap-northeast-1"
+# environment = "prod"
 ```
 
 ### 5.2. 初期化
@@ -76,8 +82,13 @@ Terraformの設定を初期化し、プロバイダのダウンロードとバ�
 作成したいクラウドプロバイダーのディレクトリに移動してから実施してください。
 
 ```bash
+## Google Cloud
 cd google-cloud
-terraform init -backend-config="bucket=${project-id}-tfstate"
+terraform init -backend-config="bucket=${project_id}-tfstate"
+
+## AWS
+cd aws
+terraform init -backend-config="bucket=${account_id}-terraform-state"
 ```
 
 ### 5.3. 実行計画の確認
